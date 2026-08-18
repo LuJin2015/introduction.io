@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Scratch — Projects</title><link rel="stylesheet" href="style.css"></head>
 <body><div class="background"></div><nav class="navbar glass"><a class="logo" href="../../index.html"> YourName</a><div class="nav-links"><a href="../../index.html">Home</a><a href="../index.html">Projects</a><a class="active" href="index.html">Scratch</a></div></nav>
-<main><header class="hero"><p class="eyebrow">🎮 SCRATCH GALLERY</p><h1>Scratch<span>.</span></h1><p>My Scratch work, embedded directly from my accounts. The gallery uses two projects from <strong>lu_jin</strong> and the two projects I made on the shared <strong>clar_funr_luj</strong> account.</p></header>
-<section id="gallery" class="gallery"><div class="loading glass">Loading my Scratch projects…</div></section>
-<section class="note glass"><strong>Accounts</strong><p><a href="https://scratch.mit.edu/users/lu_jin/" target="_blank" rel="noopener">@lu_jin</a> is my personal account. <a href="https://scratch.mit.edu/users/clar_funr_luj/" target="_blank" rel="noopener">@clar_funr_luj</a> is a shared account; only <strong>Rocktorize</strong> and <strong>rocktorize2.0</strong> are included here as my work.</p></section></main><footer><a class="button" href="../index.html">← Back to Projects</a></footer>
-<script>
-const gallery=document.getElementById('gallery');
-const esc=s=>String(s).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
-async function getProjects(user){const r=await fetch(`https://api.scratch.mit.edu/users/${encodeURIComponent(user)}/projects?limit=40&offset=0`);if(!r.ok)throw new Error(`${user}: ${r.status}`);return r.json();}
-async function loadGallery(){
- try{
-  const [mine,shared]=await Promise.all([getProjects('lu_jin'),getProjects('clar_funr_luj')]);
-  const mineTwo=[...mine].sort((a,b)=>new Date(b.history?.modified||b.history?.created||0)-new Date(a.history?.modified||a.history?.created||0)).slice(0,2).map(p=>({...p,source:'@lu_jin'}));
-  const wanted=new Set(['rocktorize','rocktorize2.0']);
-  const sharedTwo=shared.filter(p=>wanted.has(p.title.trim().toLowerCase())).map(p=>({...p,source:'@clar_funr_luj'}));
-  const projects=[...mineTwo,...sharedTwo];
-  if(projects.length===0)throw new Error('No matching projects found');
-  gallery.innerHTML=projects.map((p,i)=>`<article class="scratch-card glass"><div class="project-label"><span>${String(i+1).padStart(2,'0')}</span><div><h2>${esc(p.title)}</h2><small>${esc(p.source)}</small></div></div><iframe src="https://scratch.mit.edu/projects/${p.id}/embed" title="${esc(p.title)}" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/${p.id}/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>`).join('');
- }catch(e){gallery.innerHTML=`<div class="loading glass"><strong>Couldn't load the Scratch gallery automatically.</strong><p>${esc(e.message)}</p><p>Try refreshing the page. The gallery reads only public Scratch project information.</p></div>`;}
-}
-loadGallery();
-</script></body></html>
+<main><header class="hero"><p class="eyebrow">🎮 SCRATCH GALLERY</p><h1>Scratch<span>.</span></h1><p>My Scratch work, embedded directly from the six projects I selected.</p></header>
+<section class="gallery">
+<article class="scratch-card glass"><div class="project-label"><span>01</span><h2>Project 1326390757</h2></div><iframe src="https://scratch.mit.edu/projects/1326390757/embed" title="Scratch project 1326390757" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/1326390757/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>
+<article class="scratch-card glass"><div class="project-label"><span>02</span><h2>Project 1257451687</h2></div><iframe src="https://scratch.mit.edu/projects/1257451687/embed" title="Scratch project 1257451687" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/1257451687/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>
+<article class="scratch-card glass"><div class="project-label"><span>03</span><h2>Project 1135434466</h2></div><iframe src="https://scratch.mit.edu/projects/1135434466/embed" title="Scratch project 1135434466" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/1135434466/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>
+<article class="scratch-card glass"><div class="project-label"><span>04</span><h2>Project 1128926687</h2></div><iframe src="https://scratch.mit.edu/projects/1128926687/embed" title="Scratch project 1128926687" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/1128926687/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>
+<article class="scratch-card glass"><div class="project-label"><span>05</span><h2>Project 1071963899</h2></div><iframe src="https://scratch.mit.edu/projects/1071963899/embed" title="Scratch project 1071963899" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/1071963899/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>
+<article class="scratch-card glass"><div class="project-label"><span>06</span><h2>Project 1095092605</h2></div><iframe src="https://scratch.mit.edu/projects/1095092605/embed" title="Scratch project 1095092605" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe><a class="project-link" href="https://scratch.mit.edu/projects/1095092605/" target="_blank" rel="noopener">Open on Scratch ↗</a></article>
+</section>
+<section class="note glass"><strong>Scratch work</strong><p>These are exactly the six Scratch projects you selected.</p></section></main><footer><a class="button" href="../index.html">← Back to Projects</a></footer></body></html>
