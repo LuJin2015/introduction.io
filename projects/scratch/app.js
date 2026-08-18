@@ -13,17 +13,24 @@ async function loadProjectName(card) {
   }
 }
 
+function showUnavailable(card) {
+  const id = card.dataset.projectId;
+  const placeholder = card.querySelector('.scratch-placeholder');
+  placeholder.innerHTML = `<div class="placeholder-icon">⚠️</div><p>This Scratch project could not be loaded.</p><a class="load-button" href="https://scratch.mit.edu/projects/${id}/" target="_blank" rel="noopener">Open on Scratch</a>`;
+}
+
 function loadProject(card) {
   if (card.dataset.loaded === 'true') return;
   const id = card.dataset.projectId;
   const placeholder = card.querySelector('.scratch-placeholder');
   const iframe = document.createElement('iframe');
-  iframe.src = `https://scratch.mit.edu/projects/${id}/embed`;
+  iframe.src = `https://scratch.mit.edu/projects/${id}/embed?autostart=false`;
   iframe.title = card.querySelector('.project-title').textContent;
   iframe.allowTransparency = true;
   iframe.setAttribute('frameborder', '0');
   iframe.setAttribute('scrolling', 'no');
   iframe.allowFullscreen = true;
+  iframe.addEventListener('error', () => showUnavailable(card), { once: true });
   placeholder.replaceWith(iframe);
   card.dataset.loaded = 'true';
 }
